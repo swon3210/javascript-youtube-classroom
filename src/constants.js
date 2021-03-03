@@ -1,6 +1,6 @@
 export const SELECTOR_ID = Object.freeze({
   SEARCH_BUTTON: 'search-button', 
-  SEARCH_FORM: 'search-from',
+  SEARCH_FORM: 'search-form',
   SEARCH_FORM_INPUT: 'search-form__input',
   SEARCH_FORM_SUBMIT: 'search-form__submit',
   MODAL: 'modal',
@@ -15,4 +15,8 @@ export const SELECTOR_CLASS = Object.freeze({
 export const STYLE_CLASS = Object.freeze({
   OPEN: 'open',
   CLOSE: 'close'
+});
+
+export const YOUTUBE = Object.freeze({
+  MAX_RESULT_COUNT: 10
 })

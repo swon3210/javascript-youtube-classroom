@@ -7,3 +7,4 @@ export const $searchFormInput = $(`#${SELECTOR_ID.SEARCH_FORM_INPUT}`);
 export const $searchFormSubmit = $(`#${SELECTOR_ID.SEARCH_FORM_SUBMIT}`);
 export const $modal = $(`#${SELECTOR_ID.MODAL}`);
 export const $modalCloseButton = $(`#${SELECTOR_ID.MODAL_CLOSE_BUTTON}`);
+export const $videoWrapper = $(`#${SELECTOR_ID.VIDEO_WRAPPER}`);

@@ -1,5 +1,6 @@
 import { $searchButton, $modalCloseButton, $searchForm, $searchFormInput } from '../elements.js';
 import view from '../view/view.js';
+import { getVideosAsync } from '../apis/youtube.js';
 
 function onModalOpen() {
   view.openModal();
@@ -9,8 +10,12 @@ function onModalClose() {
   view.closeModal();
 }
 
-function onVideoSearch() {
-  const input = $searchFormInput.value;
+function onVideoSearch(event) {
+  event.preventDefault();
+  view.renderSkeletonItems();
+  getVideosAsync($searchFormInput.value).then(videos => {
+    view.renderVideoItems(videos);
+  });
 }
 
 const controller = {
