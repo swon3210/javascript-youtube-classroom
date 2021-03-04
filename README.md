@@ -43,6 +43,7 @@
 - prefix
   - view 에서 render 는 요소의 내부 요소를 조작함을 의미
   - view 에서 show 는 요소의 style.display 값을 조작함을 의미
+- getter, setter 는 pascal case 로 정의한다.
 
 ## ⚙️ Before Started
 
