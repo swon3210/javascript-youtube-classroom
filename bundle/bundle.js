@@ -12600,7 +12600,7 @@ function onSearchedVideoSave(_ref) {
     return;
   }
 
-  if (!_service_watchingVideoService_js__WEBPACK_IMPORTED_MODULE_7__.default.isVideoCountUnderLimit()) {
+  if (!isVideoCountUnderLimit()) {
     _view_index_js__WEBPACK_IMPORTED_MODULE_5__.layoutView.showSnackbar(_constants_js__WEBPACK_IMPORTED_MODULE_6__.SNACKBAR_MESSAGE.SAVE_LIMIT_EXCEEDED, false);
     return;
   }
@@ -12618,6 +12618,11 @@ function onSearchedVideoSave(_ref) {
 
   _view_index_js__WEBPACK_IMPORTED_MODULE_5__.modalView.hideVideoSaveButton(target);
   _view_index_js__WEBPACK_IMPORTED_MODULE_5__.layoutView.showSnackbar(_constants_js__WEBPACK_IMPORTED_MODULE_6__.SNACKBAR_MESSAGE.WATCHING_VIDEO_SAVE_SUCCESS, true);
+}
+
+function isVideoCountUnderLimit() {
+  var allVideoCount = _store_js__WEBPACK_IMPORTED_MODULE_3__.watchingVideoModel.getItem().length + _store_js__WEBPACK_IMPORTED_MODULE_3__.watchedVideoModel.getItem().length;
+  return allVideoCount < SETTINGS.MAX_SAVE_COUNT;
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modalController);
@@ -12944,10 +12949,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var watchingVideoService = {
-  isVideoCountUnderLimit: function isVideoCountUnderLimit() {
-    var allVideoCount = _store_js__WEBPACK_IMPORTED_MODULE_1__.watchingVideoModel.getItem().length + _store_js__WEBPACK_IMPORTED_MODULE_1__.watchedVideoModel.getItem().length;
-    return allVideoCount < _constants__WEBPACK_IMPORTED_MODULE_0__.SETTINGS.MAX_SAVE_COUNT;
-  },
   isVideosEmpty: function isVideosEmpty() {
     return _store_js__WEBPACK_IMPORTED_MODULE_1__.watchingVideoModel.getItem().length === 0;
   },

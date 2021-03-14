@@ -94,7 +94,7 @@ function onSearchedVideoSave({ target }) {
   if (!target.classList.contains(SELECTOR_CLASS.SEARCHED_CLIP_SAVE_BUTTON)) {
     return;
   }
-  if (!watchingVideoService.isVideoCountUnderLimit()) {
+  if (!isVideoCountUnderLimit()) {
     layoutView.showSnackbar(SNACKBAR_MESSAGE.SAVE_LIMIT_EXCEEDED, false);
     return;
   }
@@ -109,6 +109,13 @@ function onSearchedVideoSave({ target }) {
   }
   modalView.hideVideoSaveButton(target);
   layoutView.showSnackbar(SNACKBAR_MESSAGE.WATCHING_VIDEO_SAVE_SUCCESS, true);
+}
+
+function isVideoCountUnderLimit() {
+  const allVideoCount =
+    watchingVideoModel.getItem().length + watchedVideoModel.getItem().length;
+
+  return allVideoCount < SETTINGS.MAX_SAVE_COUNT;
 }
 
 export default modalController;

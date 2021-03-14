@@ -2,12 +2,6 @@ import { SETTINGS } from '../constants';
 import { watchedVideoModel, watchingVideoModel } from '../store.js';
 
 const watchingVideoService = {
-  isVideoCountUnderLimit() {
-    const allVideoCount =
-      watchingVideoModel.getItem().length + watchedVideoModel.getItem().length;
-
-    return allVideoCount < SETTINGS.MAX_SAVE_COUNT;
-  },
   isVideosEmpty() {
     return watchingVideoModel.getItem().length === 0;
   },
