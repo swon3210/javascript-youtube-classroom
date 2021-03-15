@@ -13,6 +13,7 @@ export const SELECTOR_ID = Object.freeze({
   SEARCH_QUERIES: 'search-queries',
   WATCHED_VIDEO_SWITCH_BUTTON: 'watched-video-switch-button',
   WATCHING_VIDEO_SWITCH_BUTTON: 'watching-video-switch-button',
+  LIKE_VIDEO_SWITCH_BUTTON: 'like-video-switch-button',
   EMPTY_WATCHING_VIDEO: 'empty-watching-video',
   EMPTY_WATCHED_VIDEO: 'empty-watched-video',
   SNACKBAR_WRAPPER: 'snackbar-wrapper',
@@ -29,6 +30,7 @@ export const SELECTOR_CLASS = Object.freeze({
   CLIP: 'js-clip',
   CLIP_CHECK_BUTTON: 'js-clip__check-button',
   CLIP_DELETE_BUTTON: 'js-clip__delete-button',
+  CLIP_LIKE_BUTTON: 'js-clip__like-button',
 
   SNACKBAR: 'js-snackbar',
   NAV_BUTTON: 'js-nav__button',
