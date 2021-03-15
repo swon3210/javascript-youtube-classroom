@@ -86,8 +86,9 @@ async function onAdditionalVideosLoad() {
     lastQuery,
     pageToken
   );
+  console.log(nextPageToken);
   modalView.insertSearchedVideos(videos);
-  modalService.savePrevSearchInfo({ nextPageToken });
+  modalService.savePrevSearchInfo({ nextPageToken: nextPageToken });
 }
 
 function onSearchedVideoSave({ target }) {

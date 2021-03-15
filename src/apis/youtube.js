@@ -5,7 +5,8 @@ export async function getVideosByKeyword(searchKeyword, pageToken) {
   const query = getQuery(searchKeyword, pageToken)
   const response = await fetch(`https://www.googleapis.com/youtube/v3/search?${parseQuery(query)}`);
   const data = await response.json();
-  const { nextPageToken } = response;
+  console.log(response, data);
+  const { nextPageToken } = data;
   const videos = data.items.map(({ id, snippet }) => getVideoItem(id, snippet));
   return {
     nextPageToken,

@@ -12168,7 +12168,8 @@ function _getVideosByKeyword() {
 
           case 6:
             data = _context.sent;
-            nextPageToken = response.nextPageToken;
+            console.log(response, data);
+            nextPageToken = data.nextPageToken;
             videos = data.items.map(function (_ref) {
               var id = _ref.id,
                   snippet = _ref.snippet;
@@ -12179,7 +12180,7 @@ function _getVideosByKeyword() {
               videos: videos
             });
 
-          case 10:
+          case 11:
           case "end":
             return _context.stop();
         }
@@ -12667,12 +12668,13 @@ function _onAdditionalVideosLoad() {
             _yield$getVideosByKey2 = _context2.sent;
             videos = _yield$getVideosByKey2.videos;
             nextPageToken = _yield$getVideosByKey2.nextPageToken;
+            console.log(nextPageToken);
             _view_index_js__WEBPACK_IMPORTED_MODULE_5__.modalView.insertSearchedVideos(videos);
             _service_modalService_js__WEBPACK_IMPORTED_MODULE_4__.default.savePrevSearchInfo({
               nextPageToken: nextPageToken
             });
 
-          case 8:
+          case 9:
           case "end":
             return _context2.stop();
         }
