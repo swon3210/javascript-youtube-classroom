@@ -12741,45 +12741,42 @@ function onWatchedVideoInteract(_ref) {
   var target = _ref.target;
 
   if (target.classList.contains(_constants__WEBPACK_IMPORTED_MODULE_0__.SELECTOR_CLASS.CLIP_CHECK_BUTTON)) {
-    onClipUnCheck(target);
+    onClipUnCheck(target.dataset.videoId);
     return;
   }
 
   if (target.classList.contains(_constants__WEBPACK_IMPORTED_MODULE_0__.SELECTOR_CLASS.CLIP_DELETE_BUTTON)) {
-    onWatchedVideoDelete(target);
+    onWatchedVideoDelete(target.dataset.videoId);
     return;
   }
 
   if (target.classList.contains(_constants__WEBPACK_IMPORTED_MODULE_0__.SELECTOR_CLASS.CLIP_LIKE_BUTTON)) {
-    onWatchedVideoLike(target);
+    onWatchedVideoLike(target.dataset.videoId);
     return;
   }
 }
 
-function onClipUnCheck(button) {
-  var videoId = button.dataset.videoId;
+function onClipUnCheck(videoId) {
   _store__WEBPACK_IMPORTED_MODULE_3__.watchedVideoModel.sendVideoTo(_store__WEBPACK_IMPORTED_MODULE_3__.watchingVideoModel, videoId);
   loadWatchedVideos();
   _view__WEBPACK_IMPORTED_MODULE_4__.layoutView.showSnackbar(_constants__WEBPACK_IMPORTED_MODULE_0__.SNACKBAR_MESSAGE.WATCHING_VIDEO_CHECK_SUCCESS, true);
 }
 
-function onWatchedVideoDelete(button) {
+function onWatchedVideoDelete(videoId) {
   if (!_view__WEBPACK_IMPORTED_MODULE_4__.layoutView.confirm(_constants__WEBPACK_IMPORTED_MODULE_0__.CONFIRM_MESSAGE.WATCHED_VIDEO_DELETE)) {
     return;
   }
 
-  var videoId = button.dataset.videoId;
   _store__WEBPACK_IMPORTED_MODULE_3__.watchedVideoModel.popVideoByVideoId(videoId);
   loadWatchedVideos();
   _view__WEBPACK_IMPORTED_MODULE_4__.layoutView.showSnackbar(_constants__WEBPACK_IMPORTED_MODULE_0__.SNACKBAR_MESSAGE.WATCHED_VIDEO_DELETE_SUCCESS, true);
 }
 
-function onWatchedVideoLike(button) {
-  if (typeof button.dataset.videoId !== 'string') {
+function onWatchedVideoLike(videoId) {
+  if (typeof videoId !== 'string') {
     return;
   }
 
-  var videoId = button.dataset.videoId;
   _store__WEBPACK_IMPORTED_MODULE_3__.watchedVideoModel.toggleLikeState(videoId);
   loadWatchedVideos();
 }
@@ -12833,46 +12830,43 @@ function onWatchingVideoInteract(_ref) {
   var target = _ref.target;
 
   if (target.classList.contains(_constants__WEBPACK_IMPORTED_MODULE_4__.SELECTOR_CLASS.CLIP_CHECK_BUTTON)) {
-    onClipCheck(target);
+    onClipCheck(target.dataset.videoId);
     return;
   }
 
   if (target.classList.contains(_constants__WEBPACK_IMPORTED_MODULE_4__.SELECTOR_CLASS.CLIP_DELETE_BUTTON)) {
-    onWatchingVideoDelete(target);
+    onWatchingVideoDelete(target.dataset.videoId);
     return;
   }
 
   if (target.classList.contains(_constants__WEBPACK_IMPORTED_MODULE_4__.SELECTOR_CLASS.CLIP_LIKE_BUTTON)) {
-    onWatchingVideoLike(target);
+    onWatchingVideoLike(target.dataset.videoId);
     return;
   }
 }
 
-function onClipCheck(button) {
-  var videoId = button.dataset.videoId;
+function onClipCheck(videoId) {
   _store__WEBPACK_IMPORTED_MODULE_1__.watchingVideoModel.sendVideoTo(_store__WEBPACK_IMPORTED_MODULE_1__.watchedVideoModel, videoId);
   loadWatchingVideos();
   _view__WEBPACK_IMPORTED_MODULE_2__.layoutView.showSnackbar(_constants__WEBPACK_IMPORTED_MODULE_4__.SNACKBAR_MESSAGE.WATCHED_VIDEO_CHECK_SUCCESS, true);
 } // TODO : button 이 아니라 videoId 를 넘겨받도록 변경. 다른 곳에서도 동일하게 모두 변경
 
 
-function onWatchingVideoDelete(button) {
+function onWatchingVideoDelete(videoId) {
   if (!_view__WEBPACK_IMPORTED_MODULE_2__.layoutView.confirm(_constants__WEBPACK_IMPORTED_MODULE_4__.CONFIRM_MESSAGE.WATCHING_VIDEO_DELETE)) {
     return;
   }
 
-  var videoId = button.dataset.videoId;
   _store__WEBPACK_IMPORTED_MODULE_1__.watchingVideoModel.popVideoByVideoId(videoId);
   loadWatchingVideos();
   _view__WEBPACK_IMPORTED_MODULE_2__.layoutView.showSnackbar(_constants__WEBPACK_IMPORTED_MODULE_4__.SNACKBAR_MESSAGE.WATCHING_VIDEO_DELETE_SUCCESS, true);
 }
 
-function onWatchingVideoLike(button) {
-  if (typeof button.dataset.videoId !== 'string') {
+function onWatchingVideoLike(videoId) {
+  if (typeof videoId !== 'string') {
     return;
   }
 
-  var videoId = button.dataset.videoId;
   _store__WEBPACK_IMPORTED_MODULE_1__.watchingVideoModel.toggleLikeState(videoId);
   loadWatchingVideos();
 }

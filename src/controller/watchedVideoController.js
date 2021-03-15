@@ -17,41 +17,38 @@ const watchedVideoController = {
 
 function onWatchedVideoInteract({ target }) {
   if (target.classList.contains(SELECTOR_CLASS.CLIP_CHECK_BUTTON)) {
-    onClipUnCheck(target);
+    onClipUnCheck(target.dataset.videoId);
     return;
   }
   if (target.classList.contains(SELECTOR_CLASS.CLIP_DELETE_BUTTON)) {
-    onWatchedVideoDelete(target);
+    onWatchedVideoDelete(target.dataset.videoId);
     return;
   }
   if (target.classList.contains(SELECTOR_CLASS.CLIP_LIKE_BUTTON)) {
-    onWatchedVideoLike(target);
+    onWatchedVideoLike(target.dataset.videoId);
     return
   }
 }
 
-function onClipUnCheck(button) {
-  const videoId = button.dataset.videoId;
+function onClipUnCheck(videoId) {
   watchedVideoModel.sendVideoTo(watchingVideoModel, videoId);
   loadWatchedVideos();
   layoutView.showSnackbar(SNACKBAR_MESSAGE.WATCHING_VIDEO_CHECK_SUCCESS, true);
 }
 
-function onWatchedVideoDelete(button) {
+function onWatchedVideoDelete(videoId) {
   if (!layoutView.confirm(CONFIRM_MESSAGE.WATCHED_VIDEO_DELETE)) {
     return;
   }
-  const videoId = button.dataset.videoId;
   watchedVideoModel.popVideoByVideoId(videoId);
   loadWatchedVideos();
   layoutView.showSnackbar(SNACKBAR_MESSAGE.WATCHED_VIDEO_DELETE_SUCCESS, true);
 }
 
-function onWatchedVideoLike(button) {
-  if (typeof button.dataset.videoId !== 'string') {
+function onWatchedVideoLike(videoId) {
+  if (typeof videoId !== 'string') {
     return;
   }
-  const videoId = button.dataset.videoId;
   watchedVideoModel.toggleLikeState(videoId);
   loadWatchedVideos();
 }

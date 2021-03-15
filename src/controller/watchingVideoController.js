@@ -23,42 +23,39 @@ const watchingVideoController = {
 
 function onWatchingVideoInteract({ target }) {
   if (target.classList.contains(SELECTOR_CLASS.CLIP_CHECK_BUTTON)) {
-    onClipCheck(target);
+    onClipCheck(target.dataset.videoId);
     return;
   }
   if (target.classList.contains(SELECTOR_CLASS.CLIP_DELETE_BUTTON)) {
-    onWatchingVideoDelete(target);
+    onWatchingVideoDelete(target.dataset.videoId);
     return;
   }
   if (target.classList.contains(SELECTOR_CLASS.CLIP_LIKE_BUTTON)) {
-    onWatchingVideoLike(target);
+    onWatchingVideoLike(target.dataset.videoId);
     return
   }
 }
 
-function onClipCheck(button) {
-  const videoId = button.dataset.videoId;
+function onClipCheck(videoId) {
   watchingVideoModel.sendVideoTo(watchedVideoModel, videoId);
   loadWatchingVideos();
   layoutView.showSnackbar(SNACKBAR_MESSAGE.WATCHED_VIDEO_CHECK_SUCCESS, true);
 }
 
 // TODO : button 이 아니라 videoId 를 넘겨받도록 변경. 다른 곳에서도 동일하게 모두 변경
-function onWatchingVideoDelete(button) {
+function onWatchingVideoDelete(videoId) {
   if (!layoutView.confirm(CONFIRM_MESSAGE.WATCHING_VIDEO_DELETE)) {
     return;
   }
-  const videoId = button.dataset.videoId;
   watchingVideoModel.popVideoByVideoId(videoId);
   loadWatchingVideos();
   layoutView.showSnackbar(SNACKBAR_MESSAGE.WATCHING_VIDEO_DELETE_SUCCESS, true);
 }
 
-function onWatchingVideoLike(button) {
-  if (typeof button.dataset.videoId !== 'string') {
+function onWatchingVideoLike(videoId) {
+  if (typeof videoId !== 'string') {
     return;
   }
-  const videoId = button.dataset.videoId;
   watchingVideoModel.toggleLikeState(videoId);
   loadWatchingVideos();
 }
