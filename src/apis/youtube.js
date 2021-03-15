@@ -1,5 +1,6 @@
 import { YOUTUBE } from '../constants.js';
 
+// TODO: nextPageToken 업데이트 안되는 문제 해결
 export async function getVideosByKeyword(searchKeyword, pageToken) {
   const query = getQuery(searchKeyword, pageToken)
   const response = await fetch(`https://www.googleapis.com/youtube/v3/search?${parseQuery(query)}`);

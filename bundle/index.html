@@ -75,11 +75,17 @@
                 <p>본 영상이 담겨있지 않습니다.</p>
               </div>
             </section>
-            <section
-              id="watching-video-wrapper"
-              class="video-wrapper"
-            ></section>
-            <section id="watched-video-wrapper" class="video-wrapper"></section>
+            <div>
+              <section id="watching-video-wrapper" class="video-wrapper">
+              </section>
+              <div id="watching-video-wrapper__intersector" class="intersector"></div>
+            </div>
+            <div>
+              <section id="watched-video-wrapper" class="video-wrapper">
+              </section>
+              <div id="watched-video-wrapper__intersector" class="intersector"></div>
+            </div>
+            
           </main>
         </div>
       </div>
@@ -136,7 +142,7 @@
               id="search-result__video-wrapper"
               class="video-wrapper my-5"
             ></section>
-            <div id="search-result__intersector" class="removed"></div>
+            <div id="search-result__intersector" class="removed intersector"></div>
           </section>
         </div>
       </div>

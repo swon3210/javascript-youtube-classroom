@@ -6,6 +6,8 @@ import {
   $modal,
   $searchQueries,
   $searchResultVideoWrapper,
+  $watchedVideoWrapperIntersector,
+  $watchingVideoWrapperIntersector,
   $nav,
   $snackbarWrapper,
   $savedVideoCount,
@@ -22,6 +24,7 @@ export const watchingVideoView = new VideoView(
   {
     $videoWrapper: $watchingVideoWrapper,
     $emptyVideoImage: $emptyWatchingVideo,
+    $videoWrapperIntersector: $watchingVideoWrapperIntersector
   },
   false
 );
@@ -29,6 +32,7 @@ export const watchedVideoView = new VideoView(
   {
     $videoWrapper: $watchedVideoWrapper,
     $emptyVideoImage: $emptyWatchedVideo,
+    $videoWrapperIntersector: $watchedVideoWrapperIntersector
   },
   true
 );

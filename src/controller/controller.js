@@ -37,8 +37,10 @@ function onWatchingVideoShow(videos) {
   }
   watchedVideoView.eraseVideos();
   watchedVideoView.hideEmptyVideoImage();
+  watchedVideoView.hideVideoWrapperIntersector();
   watchingVideoView.renderVideos(videos);
   watchingVideoView.hideEmptyVideoImage();
+  watchingVideoView.showVideoWrapperIntersector();
 }
 
 function onWatchedVideoShow(videos) {
@@ -47,8 +49,10 @@ function onWatchedVideoShow(videos) {
   }
   watchingVideoView.eraseVideos();
   watchingVideoView.hideEmptyVideoImage();
+  watchingVideoView.hideVideoWrapperIntersector();
   watchedVideoView.renderVideos(videos);
   watchedVideoView.hideEmptyVideoImage();
+  watchedVideoView.showVideoWrapperIntersector();
 }
 
 export default controller;

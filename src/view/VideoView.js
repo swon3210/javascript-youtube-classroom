@@ -4,8 +4,8 @@ import BasicView from './BasicView';
 export default class VideoView extends BasicView {
   #isChecked;
 
-  constructor({ $videoWrapper, $emptyVideoImage }, isChecked) {
-    super({ $videoWrapper, $emptyVideoImage });
+  constructor({ $videoWrapper, $emptyVideoImage, $videoWrapperIntersector }, isChecked) {
+    super({ $videoWrapper, $emptyVideoImage, $videoWrapperIntersector });
     this.#isChecked = isChecked;
   }
 
@@ -25,8 +25,17 @@ export default class VideoView extends BasicView {
     this.showElement(this._element.$emptyVideoImage);
   }
 
+  showVideoWrapperIntersector() {
+    this.showElement(this._element.$videoWrapperIntersector)
+  }
+
+
   hideEmptyVideoImage() {
     this.hideElement(this._element.$emptyVideoImage);
+  }
+
+  hideVideoWrapperIntersector() {
+    this.hideElement(this._element.$videoWrapperIntersector)
   }
 
   _getVideoListTemplate(videos, isWatched) {
@@ -37,12 +46,13 @@ export default class VideoView extends BasicView {
 
   _getVideoTemplate(videoItem, isWatched) {
     return `
-    <article class="${SELECTOR_CLASS.CLIP} clip">
+    <article class="${SELECTOR_CLASS.CLIP} clip ${STYLE_CLASS.REMOVED}">
       <div class="clip__preview relative">
-        <img class="clip__thumnail" src="${videoItem.thumbnail}" />
+        <img class="clip__thumnail" src="${videoItem.thumbnail}" loading="lazy" />
         <iframe
           width="100%"
           height="118"
+          loading="lazy"
           src="https://www.youtube.com/embed/${videoItem.videoId}"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -1,4 +1,5 @@
-import { $watchingVideoWrapper } from '../elements';
+import { $watchingVideoWrapper, $watchingVideoWrapperIntersector } from '../elements';
+import { $ } from '../utils/querySelector.js';
 import { watchedVideoModel, watchingVideoModel } from '../store';
 import {
   layoutView,
@@ -9,11 +10,15 @@ import watchingVideoService from '../service/watchingVideoService.js';
 import {
   CONFIRM_MESSAGE,
   SELECTOR_CLASS,
+  SETTINGS,
   SNACKBAR_MESSAGE,
+  STYLE_CLASS,
 } from '../constants';
+import controllerUtil from './controllerUtil';
 
 const watchingVideoController = {
   initEventListeners() {
+    controllerUtil.setObserver($watchingVideoWrapperIntersector, displayMoreWatchingVideos)
     $watchingVideoWrapper.addEventListener('click', onWatchingVideoInteract);
   },
   loadVideos() {
@@ -67,6 +72,17 @@ function loadWatchingVideos() {
     watchedVideoView.hideEmptyVideoImage();
   }
   watchingVideoView.renderVideos(watchingVideos);
+}
+
+function displayMoreWatchingVideos() {
+  let removeCount = 0;
+  $(`.${SELECTOR_CLASS.CLIP}`, $watchingVideoWrapper)?.forEach(($clip) => {
+    if ($clip.classList.contains(STYLE_CLASS.REMOVED) && removeCount < SETTINGS.CLIP_ADD_COUNT_PER_PAGING) {
+      $clip.classList.remove(STYLE_CLASS.REMOVED);
+      removeCount += 1
+      return;
+    }
+  })
 }
 
 export default watchingVideoController;

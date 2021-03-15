@@ -10,6 +10,8 @@ export const SELECTOR_ID = Object.freeze({
   WATCHED_VIDEO_WRAPPER: 'watched-video-wrapper',
   SEARCHED_VIDEO_NOT_FOUND: 'searched-video-not-found',
   SERACH_RESULT_INTERSECTOR: 'search-result__intersector',
+  WATCHED_VIDEO_WRAPPER_INTERSECTOR: 'watched-video-wrapper__intersector',
+  WATCHING_VIDEO_WRAPPER_INTERSECTOR: 'watching-video-wrapper__intersector',
   SEARCH_QUERIES: 'search-queries',
   WATCHED_VIDEO_SWITCH_BUTTON: 'watched-video-switch-button',
   WATCHING_VIDEO_SWITCH_BUTTON: 'watching-video-switch-button',
@@ -44,7 +46,8 @@ export const STYLE_CLASS = Object.freeze({
   SNACKBAR: 'snackbar',
   CLICKED: 'clicked',
   CHECKED: 'checked',
-  OPACITY_HOVER: 'opacity-hover'
+  OPACITY_HOVER: 'opacity-hover',
+  REMOVED: 'removed'
 });
 
 export const ANIMATION_CLASS = Object.freeze({
@@ -59,6 +62,7 @@ export const SETTINGS = Object.freeze({
   MAX_SAVE_COUNT: 100,
   MAX_SAVED_SEARCH_QUERY_COUNT: 3,
   SNACKBAR_PERSISTENT_MILLISEC: 3000,
+  CLIP_ADD_COUNT_PER_PAGING: 10
 });
 
 export const LOCAL_STORAGE_KEY = Object.freeze({

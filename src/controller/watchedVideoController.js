@@ -1,16 +1,21 @@
 import {
   CONFIRM_MESSAGE,
   SELECTOR_CLASS,
+  SETTINGS,
   SNACKBAR_MESSAGE,
+  STYLE_CLASS,
 } from '../constants';
-import { $watchedVideoWrapper } from '../elements';
+import { $watchedVideoWrapper, $watchedVideoWrapperIntersector } from '../elements';
 import watchedVideoService from '../service/watchedVideoService.js';
 import { watchedVideoModel, watchingVideoModel } from '../store';
 import { layoutView, watchedVideoView, watchingVideoView } from '../view';
+import { $ } from '../utils/querySelector.js';
+import controllerUtil from './controllerUtil.js';
 
 // TODO : 이것도 VideoController 클래스로 추상화
 const watchedVideoController = {
   initEventListeners() {
+    controllerUtil.setObserver($watchedVideoWrapperIntersector, displayMoreWatchedVideos)
     $watchedVideoWrapper.addEventListener('click', onWatchedVideoInteract);
   },
 };
@@ -60,6 +65,17 @@ function loadWatchedVideos() {
     watchingVideoView.hideEmptyVideoImage();
   }
   watchedVideoView.renderVideos(watchedVideos);
+}
+
+function displayMoreWatchedVideos() {
+  let removeCount = 0;
+  $(`.${SELECTOR_CLASS.CLIP}`, $watchedVideoWrapper)?.forEach(($clip) => {
+    if ($clip.classList.contains(STYLE_CLASS.REMOVED) && removeCount < SETTINGS.CLIP_ADD_COUNT_PER_PAGING) {
+      $clip.classList.remove(STYLE_CLASS.REMOVED);
+      removeCount += 1
+      return;
+    }
+  })
 }
 
 export default watchedVideoController;

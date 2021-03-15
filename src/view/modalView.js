@@ -1,6 +1,5 @@
 import {
   STYLE_CLASS,
-  SELECTOR_ID,
   SELECTOR_CLASS,
   YOUTUBE,
 } from '../constants.js';
@@ -118,10 +117,12 @@ export default class ModalView extends BasicView {
     return `
     <article class="${SELECTOR_CLASS.SEARCHED_CLIP} clip">
       <div class="clip__preview">
+        <img class="clip__thumnail--in-modal" src="${videoItem.thumbnail}" loading="lazy" />
         <iframe
           width="100%"
           height="118"
           src="https://www.youtube.com/embed/${videoItem.videoId}"
+          loading="lazy"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen

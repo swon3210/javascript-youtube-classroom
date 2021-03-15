@@ -4436,7 +4436,7 @@ a {
   overflow-y: scroll;
 }
 
-#search-result__intersector {
+.intersector {
   height: 30px;
 }
 
@@ -4444,6 +4444,12 @@ a {
   position: absolute;
   top: 0;
   z-index: -1;
+}
+
+.clip__thumnail--in-modal {
+  position: absolute;
+  top: 0;
+  z-index: 1;
 }
 
 /*# sourceMappingURL=main.css.map*/
