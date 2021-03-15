@@ -12206,7 +12206,7 @@ function getVideoItem(id, snippet) {
     title: snippet.title,
     channelTitle: snippet.channelTitle,
     publishedAt: snippet.publishedAt,
-    thumbnail: snippet.thumbnails["default"],
+    thumbnail: snippet.thumbnails.medium.url,
     isLiked: false
   };
 }
@@ -13122,25 +13122,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/constants.js");
-/* harmony import */ var _store_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store.js */ "./src/store.js");
-
+/* harmony import */ var _store_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store.js */ "./src/store.js");
 
 var watchingVideoService = {
   isVideosEmpty: function isVideosEmpty() {
-    return _store_js__WEBPACK_IMPORTED_MODULE_1__.watchingVideoModel.getItem().length === 0;
+    return _store_js__WEBPACK_IMPORTED_MODULE_0__.watchingVideoModel.getItem().length === 0;
   },
   pushNewVideo: function pushNewVideo(dataset) {
-    _store_js__WEBPACK_IMPORTED_MODULE_1__.watchingVideoModel.pushItem(getNewVideo(dataset));
+    _store_js__WEBPACK_IMPORTED_MODULE_0__.watchingVideoModel.pushItem(getNewVideo(dataset));
   }
 };
 
 function getNewVideo(dataset) {
+  console.log(dataset);
   return {
     title: dataset.title,
     channelTitle: dataset.channelTitle,
     publishedAt: dataset.publishedAt,
     videoId: dataset.videoId,
+    thumbnail: dataset.thumbnail,
     isSaved: true,
     isLiked: false
   };
@@ -13450,7 +13450,6 @@ var VideoStorage = /*#__PURE__*/function (_ArrayStorage) {
         return video.videoId === videoId;
       });
       videos[targetIndex].isLiked = !videos[targetIndex].isLiked;
-      console.log('videos', videos, targetIndex);
       this.setItem(videos);
     }
   }]);
@@ -13955,7 +13954,7 @@ var _getSearchedVideoListTemplate2 = function _getSearchedVideoListTemplate2(vid
 };
 
 var _getSearchedVideoTemplate2 = function _getSearchedVideoTemplate2(videoItem) {
-  return "\n    <article class=\"".concat(_constants_js__WEBPACK_IMPORTED_MODULE_0__.SELECTOR_CLASS.SEARCHED_CLIP, " clip\">\n      <div class=\"clip__preview\">\n        <iframe\n          width=\"100%\"\n          height=\"118\"\n          src=\"https://www.youtube.com/embed/").concat(videoItem.videoId, "\"\n          frameborder=\"0\"\n          allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\"\n          allowfullscreen\n        ></iframe>\n      </div>\n      <div class=\"clip__content pt-2 px-1\">\n        <h3>").concat(videoItem.title, "</h3>\n        <div>\n          <a\n            href=\"https://www.youtube.com/channel/UC-mOekGSesms0agFntnQang\"\n            target=\"_blank\"\n            class=\"channel-name mt-1\"\n          >\n            ").concat(videoItem.channelTitle, "\n          </a>\n          <div class=\"meta\">\n            <p>").concat(videoItem.publishedAt, "</p>\n          </div>\n          <div class=\"d-flex justify-end ").concat(videoItem.isSaved ? 'removed' : '', "\">\n            <button class=\"btn ").concat(_constants_js__WEBPACK_IMPORTED_MODULE_0__.SELECTOR_CLASS.SEARCHED_CLIP_SAVE_BUTTON, "\"\n              data-video-id=\"").concat(videoItem.videoId, "\"\n              data-title=\"").concat(videoItem.title, "\"\n              data-channel-title=\"").concat(videoItem.channelTitle, "\"\n              data-published-at=\"").concat(videoItem.publishedAt, "\"\n            >\u2B07\uFE0F \uC800\uC7A5</button>\n          </div>\n        </div>\n      </div>\n    </article>\n    ");
+  return "\n    <article class=\"".concat(_constants_js__WEBPACK_IMPORTED_MODULE_0__.SELECTOR_CLASS.SEARCHED_CLIP, " clip\">\n      <div class=\"clip__preview\">\n        <iframe\n          width=\"100%\"\n          height=\"118\"\n          src=\"https://www.youtube.com/embed/").concat(videoItem.videoId, "\"\n          frameborder=\"0\"\n          allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\"\n          allowfullscreen\n        ></iframe>\n      </div>\n      <div class=\"clip__content pt-2 px-1\">\n        <h3>").concat(videoItem.title, "</h3>\n        <div>\n          <a\n            href=\"https://www.youtube.com/channel/UC-mOekGSesms0agFntnQang\"\n            target=\"_blank\"\n            class=\"channel-name mt-1\"\n          >\n            ").concat(videoItem.channelTitle, "\n          </a>\n          <div class=\"meta\">\n            <p>").concat(videoItem.publishedAt, "</p>\n          </div>\n          <div class=\"d-flex justify-end ").concat(videoItem.isSaved ? 'removed' : '', "\">\n            <button class=\"btn ").concat(_constants_js__WEBPACK_IMPORTED_MODULE_0__.SELECTOR_CLASS.SEARCHED_CLIP_SAVE_BUTTON, "\"\n              data-video-id=\"").concat(videoItem.videoId, "\"\n              data-title=\"").concat(videoItem.title, "\"\n              data-channel-title=\"").concat(videoItem.channelTitle, "\"\n              data-published-at=\"").concat(videoItem.publishedAt, "\"\n              data-thumbnail=\"").concat(videoItem.thumbnail, "\"\n            >\u2B07\uFE0F \uC800\uC7A5</button>\n          </div>\n        </div>\n      </div>\n    </article>\n    ");
 };
 
 
@@ -14067,7 +14066,7 @@ var VideoView = /*#__PURE__*/function (_BasicView) {
   }, {
     key: "_getVideoTemplate",
     value: function _getVideoTemplate(videoItem, isWatched) {
-      return "\n    <article class=\"".concat(_constants__WEBPACK_IMPORTED_MODULE_0__.SELECTOR_CLASS.CLIP, " clip\">\n      <div class=\"clip__preview\">\n        <iframe\n          width=\"100%\"\n          height=\"118\"\n          src=\"https://www.youtube.com/embed/").concat(videoItem.videoId, "\"\n          frameborder=\"0\"\n          allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\"\n          allowfullscreen\n        ></iframe>\n      </div>\n      <div class=\"clip__content pt-2 px-1\">\n        <h3>").concat(videoItem.title, "</h3>\n        <div>\n          <a\n            href=\"https://www.youtube.com/channel/UC-mOekGSesms0agFntnQang\"\n            target=\"_blank\"\n            class=\"channel-name mt-1\"\n          >\n            ").concat(videoItem.channelTitle, "\n          </a>\n          <div class=\"meta\">\n            <p>").concat(videoItem.publishedAt, "</p>\n          </div>\n          <div>\n            <span \n              class=\"\n                ").concat(_constants__WEBPACK_IMPORTED_MODULE_0__.SELECTOR_CLASS.CLIP_CHECK_BUTTON, "\n                clip__check-button\n                ").concat(isWatched ? _constants__WEBPACK_IMPORTED_MODULE_0__.STYLE_CLASS.CHECKED : _constants__WEBPACK_IMPORTED_MODULE_0__.STYLE_CLASS.OPACITY_HOVER, " \n              \" \n              data-video-id=\"").concat(videoItem.videoId, "\"\n            >\u2705</span>\n            <span \n              class=\"\n                ").concat(_constants__WEBPACK_IMPORTED_MODULE_0__.SELECTOR_CLASS.CLIP_LIKE_BUTTON, "\n                ").concat(videoItem.isLiked ? _constants__WEBPACK_IMPORTED_MODULE_0__.STYLE_CLASS.CHECKED : _constants__WEBPACK_IMPORTED_MODULE_0__.STYLE_CLASS.OPACITY_HOVER, " \n              \"\n              data-video-id=\"").concat(videoItem.videoId, "\">\uD83D\uDC4D</span>\n            <span class=\"").concat(_constants__WEBPACK_IMPORTED_MODULE_0__.STYLE_CLASS.OPACITY_HOVER, "\">\uD83D\uDCAC</span>\n            <span \n              class=\"").concat(_constants__WEBPACK_IMPORTED_MODULE_0__.SELECTOR_CLASS.CLIP_DELETE_BUTTON, " ").concat(_constants__WEBPACK_IMPORTED_MODULE_0__.STYLE_CLASS.OPACITY_HOVER, "\" \n              data-video-id=\"").concat(videoItem.videoId, "\"\n            >\uD83D\uDDD1\uFE0F</span>\n          </div>\n        </div>\n      </div>\n    </article>\n    ");
+      return "\n    <article class=\"".concat(_constants__WEBPACK_IMPORTED_MODULE_0__.SELECTOR_CLASS.CLIP, " clip\">\n      <div class=\"clip__preview relative\">\n        <img class=\"clip__thumnail\" src=\"").concat(videoItem.thumbnail, "\" />\n        <iframe\n          width=\"100%\"\n          height=\"118\"\n          src=\"https://www.youtube.com/embed/").concat(videoItem.videoId, "\"\n          frameborder=\"0\"\n          allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\"\n          allowfullscreen\n        ></iframe>\n      </div>\n      <div class=\"clip__content pt-2 px-1\">\n        <h3>").concat(videoItem.title, "</h3>\n        <div>\n          <a\n            href=\"https://www.youtube.com/channel/UC-mOekGSesms0agFntnQang\"\n            target=\"_blank\"\n            class=\"channel-name mt-1\"\n          >\n            ").concat(videoItem.channelTitle, "\n          </a>\n          <div class=\"meta\">\n            <p>").concat(videoItem.publishedAt, "</p>\n          </div>\n          <div>\n            <span \n              class=\"\n                ").concat(_constants__WEBPACK_IMPORTED_MODULE_0__.SELECTOR_CLASS.CLIP_CHECK_BUTTON, "\n                clip__check-button\n                ").concat(isWatched ? _constants__WEBPACK_IMPORTED_MODULE_0__.STYLE_CLASS.CHECKED : _constants__WEBPACK_IMPORTED_MODULE_0__.STYLE_CLASS.OPACITY_HOVER, " \n              \" \n              data-video-id=\"").concat(videoItem.videoId, "\"\n            >\u2705</span>\n            <span \n              class=\"\n                ").concat(_constants__WEBPACK_IMPORTED_MODULE_0__.SELECTOR_CLASS.CLIP_LIKE_BUTTON, "\n                ").concat(videoItem.isLiked ? _constants__WEBPACK_IMPORTED_MODULE_0__.STYLE_CLASS.CHECKED : _constants__WEBPACK_IMPORTED_MODULE_0__.STYLE_CLASS.OPACITY_HOVER, " \n              \"\n              data-video-id=\"").concat(videoItem.videoId, "\">\uD83D\uDC4D</span>\n            <span class=\"").concat(_constants__WEBPACK_IMPORTED_MODULE_0__.STYLE_CLASS.OPACITY_HOVER, "\">\uD83D\uDCAC</span>\n            <span \n              class=\"").concat(_constants__WEBPACK_IMPORTED_MODULE_0__.SELECTOR_CLASS.CLIP_DELETE_BUTTON, " ").concat(_constants__WEBPACK_IMPORTED_MODULE_0__.STYLE_CLASS.OPACITY_HOVER, "\" \n              data-video-id=\"").concat(videoItem.videoId, "\"\n            >\uD83D\uDDD1\uFE0F</span>\n          </div>\n        </div>\n      </div>\n    </article>\n    ");
     }
   }]);
 
@@ -14259,7 +14258,6 @@ _controller_modalController_js__WEBPACK_IMPORTED_MODULE_3__.default.initSearchQu
 _controller_watchingVideoController_js__WEBPACK_IMPORTED_MODULE_1__.default.initEventListeners();
 _controller_watchedVideoController_js__WEBPACK_IMPORTED_MODULE_2__.default.initEventListeners();
 _controller_filterController_js__WEBPACK_IMPORTED_MODULE_4__.default.initEventListeners();
-_controller_watchingVideoController_js__WEBPACK_IMPORTED_MODULE_1__.default.loadVideos();
 })();
 
 /******/ })()

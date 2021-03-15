@@ -1,5 +1,4 @@
-import { SETTINGS } from '../constants';
-import { watchedVideoModel, watchingVideoModel } from '../store.js';
+import { watchingVideoModel } from '../store.js';
 
 const watchingVideoService = {
   isVideosEmpty() {
@@ -11,11 +10,13 @@ const watchingVideoService = {
 };
 
 function getNewVideo(dataset) {
+  console.log(dataset);
   return {
     title: dataset.title,
     channelTitle: dataset.channelTitle,
     publishedAt: dataset.publishedAt,
     videoId: dataset.videoId,
+    thumbnail: dataset.thumbnail,
     isSaved: true,
     isLiked: false
   };

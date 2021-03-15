@@ -38,7 +38,8 @@ export default class VideoView extends BasicView {
   _getVideoTemplate(videoItem, isWatched) {
     return `
     <article class="${SELECTOR_CLASS.CLIP} clip">
-      <div class="clip__preview">
+      <div class="clip__preview relative">
+        <img class="clip__thumnail" src="${videoItem.thumbnail}" />
         <iframe
           width="100%"
           height="118"

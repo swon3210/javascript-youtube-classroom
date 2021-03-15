@@ -10,4 +10,3 @@ modalController.initSearchQueries();
 watchingVideoController.initEventListeners();
 watchedVideoController.initEventListeners();
 filterController.initEventListeners();
-watchingVideoController.loadVideos();

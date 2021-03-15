@@ -30,7 +30,7 @@ function getVideoItem(id, snippet) {
     title: snippet.title,
     channelTitle: snippet.channelTitle,
     publishedAt: snippet.publishedAt,
-    thumbnail: snippet.thumbnails.default,
+    thumbnail: snippet.thumbnails.medium.url,
     isLiked: false
   }
 }

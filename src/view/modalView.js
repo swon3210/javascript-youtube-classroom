@@ -145,6 +145,7 @@ export default class ModalView extends BasicView {
               data-title="${videoItem.title}"
               data-channel-title="${videoItem.channelTitle}"
               data-published-at="${videoItem.publishedAt}"
+              data-thumbnail="${videoItem.thumbnail}"
             >⬇️ 저장</button>
           </div>
         </div>

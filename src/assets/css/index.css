@@ -33,3 +33,9 @@ a {
 #search-result__intersector {
   height: 30px;
 }
+
+.clip__thumnail {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
