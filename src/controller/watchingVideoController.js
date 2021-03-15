@@ -30,6 +30,10 @@ function onWatchingVideoInteract({ target }) {
     onWatchingVideoDelete(target);
     return;
   }
+  if (target.classList.contains(SELECTOR_CLASS.CLIP_LIKE_BUTTON)) {
+    onWatchingVideoLike(target);
+    return
+  }
 }
 
 function onClipCheck(button) {
@@ -39,6 +43,7 @@ function onClipCheck(button) {
   layoutView.showSnackbar(SNACKBAR_MESSAGE.WATCHED_VIDEO_CHECK_SUCCESS, true);
 }
 
+// TODO : button 이 아니라 videoId 를 넘겨받도록 변경. 다른 곳에서도 동일하게 모두 변경
 function onWatchingVideoDelete(button) {
   if (!layoutView.confirm(CONFIRM_MESSAGE.WATCHING_VIDEO_DELETE)) {
     return;
@@ -47,6 +52,15 @@ function onWatchingVideoDelete(button) {
   watchingVideoModel.popVideoByVideoId(videoId);
   loadWatchingVideos();
   layoutView.showSnackbar(SNACKBAR_MESSAGE.WATCHING_VIDEO_DELETE_SUCCESS, true);
+}
+
+function onWatchingVideoLike(button) {
+  if (typeof button.dataset.videoId !== 'string') {
+    return;
+  }
+  const videoId = button.dataset.videoId;
+  watchingVideoModel.toggleLikeState(videoId);
+  loadWatchingVideos();
 }
 
 function loadWatchingVideos() {

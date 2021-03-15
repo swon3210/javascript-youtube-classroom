@@ -44,6 +44,7 @@ export const STYLE_CLASS = Object.freeze({
   SNACKBAR: 'snackbar',
   CLICKED: 'clicked',
   CHECKED: 'checked',
+  OPACITY_HOVER: 'opacity-hover'
 });
 
 export const ANIMATION_CLASS = Object.freeze({
@@ -85,3 +86,8 @@ export const BROWSER_HASH = Object.freeze({
   WATCHING: 'watching',
   WATCHED: 'watched',
 });
+
+export const FILTER = Object.freeze({
+  DEFAULT: 'default',
+  LIKE: 'like'
+})

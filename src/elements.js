@@ -24,3 +24,4 @@ export const $snackbarWrapper = $(`#${SELECTOR_ID.SNACKBAR_WRAPPER}`);
 export const $watchedVideoWrapper = $(`#${SELECTOR_ID.WATCHED_VIDEO_WRAPPER}`);
 export const $nav = $(`#${SELECTOR_ID.NAV}`);
 export const $savedVideoCount = $(`#${SELECTOR_ID.SAVED_VIDEO_COUNT}`);
+export const $likeVideoSwitchButton = $(`#${SELECTOR_ID.LIKE_VIDEO_SWITCH_BUTTON}`);

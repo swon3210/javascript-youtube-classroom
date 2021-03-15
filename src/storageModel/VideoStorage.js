@@ -21,4 +21,11 @@ export default class VideoStorage extends ArrayStorage {
     }
     videoStorage.pushItem(sendingVideo);
   }
+  toggleLikeState(videoId) {
+    const videos = this.getItem();
+    const targetIndex = videos.findIndex(video => video.videoId === videoId);
+    videos[targetIndex].isLiked = !videos[targetIndex].isLiked;
+    console.log('videos', videos, targetIndex);
+    this.setItem(videos);
+  }
 }

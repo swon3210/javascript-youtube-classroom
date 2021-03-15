@@ -8,6 +8,7 @@ import watchedVideoService from '../service/watchedVideoService.js';
 import { watchedVideoModel, watchingVideoModel } from '../store';
 import { layoutView, watchedVideoView, watchingVideoView } from '../view';
 
+// TODO : 이것도 VideoController 클래스로 추상화
 const watchedVideoController = {
   initEventListeners() {
     $watchedVideoWrapper.addEventListener('click', onWatchedVideoInteract);
@@ -22,6 +23,10 @@ function onWatchedVideoInteract({ target }) {
   if (target.classList.contains(SELECTOR_CLASS.CLIP_DELETE_BUTTON)) {
     onWatchedVideoDelete(target);
     return;
+  }
+  if (target.classList.contains(SELECTOR_CLASS.CLIP_LIKE_BUTTON)) {
+    onWatchedVideoLike(target);
+    return
   }
 }
 
@@ -40,6 +45,15 @@ function onWatchedVideoDelete(button) {
   watchedVideoModel.popVideoByVideoId(videoId);
   loadWatchedVideos();
   layoutView.showSnackbar(SNACKBAR_MESSAGE.WATCHED_VIDEO_DELETE_SUCCESS, true);
+}
+
+function onWatchedVideoLike(button) {
+  if (typeof button.dataset.videoId !== 'string') {
+    return;
+  }
+  const videoId = button.dataset.videoId;
+  watchedVideoModel.toggleLikeState(videoId);
+  loadWatchedVideos();
 }
 
 function loadWatchedVideos() {

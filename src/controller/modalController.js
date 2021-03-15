@@ -16,7 +16,7 @@ import {
 } from '../store.js';
 import modalService from '../service/modalService.js';
 import { layoutView, modalView, watchedVideoView, watchingVideoView } from '../view/index.js';
-import { BROWSER_HASH, SELECTOR_CLASS, SNACKBAR_MESSAGE } from '../constants.js';
+import { BROWSER_HASH, SELECTOR_CLASS, SETTINGS, SNACKBAR_MESSAGE } from '../constants.js';
 import watchingVideoService from '../service/watchingVideoService.js';
 
 const modalController = {

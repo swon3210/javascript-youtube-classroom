@@ -66,15 +66,19 @@ export default class VideoView extends BasicView {
               class="
                 ${SELECTOR_CLASS.CLIP_CHECK_BUTTON}
                 clip__check-button
-                ${isWatched ? STYLE_CLASS.CHECKED : ''} 
-                opacity-hover
+                ${isWatched ? STYLE_CLASS.CHECKED : STYLE_CLASS.OPACITY_HOVER} 
               " 
               data-video-id="${videoItem.videoId}"
             >✅</span>
-            <span class="opacity-hover">👍</span>
-            <span class="opacity-hover">💬</span>
             <span 
-              class="${SELECTOR_CLASS.CLIP_DELETE_BUTTON} opacity-hover" 
+              class="
+                ${SELECTOR_CLASS.CLIP_LIKE_BUTTON}
+                ${videoItem.isLiked ? STYLE_CLASS.CHECKED : STYLE_CLASS.OPACITY_HOVER} 
+              "
+              data-video-id="${videoItem.videoId}">👍</span>
+            <span class="${STYLE_CLASS.OPACITY_HOVER}">💬</span>
+            <span 
+              class="${SELECTOR_CLASS.CLIP_DELETE_BUTTON} ${STYLE_CLASS.OPACITY_HOVER}" 
               data-video-id="${videoItem.videoId}"
             >🗑️</span>
           </div>

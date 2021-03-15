@@ -1,5 +1,5 @@
-import { BROWSER_HASH } from '../constants.js';
-import { watchingVideoModel, watchedVideoModel } from '../store.js';
+import { BROWSER_HASH, FILTER } from '../constants.js';
+import { watchingVideoModel, watchedVideoModel, videoFilter } from '../store.js';
 import controllerUtil from './controllerUtil.js';
 
 import {
@@ -15,41 +15,48 @@ const controller = {
   },
 };
 
+// 이미 좋아요 해쉬인 상태에서 다시 좋아요 해제 한 상태 만들기
+
 function routeByHash() {
-  const hash = controllerUtil.parseHash(location.hash);
-  layoutView.highlightNavButton(hash);
-  if (hash === BROWSER_HASH.WATCHING) {
-    onWatchingVideoShow();
+  const [ videoType, renderCondition ] = controllerUtil.parseHash(location.hash).split('#');
+  layoutView.highlightNavButton(videoType);  
+  if (videoType === BROWSER_HASH.WATCHED) {
+    const videos = watchedVideoModel.getItem();
+    const filteredVideos = getFilteredVideos(videos, renderCondition)
+    onWatchedVideoShow(filteredVideos);
     return;
   }
-  if (hash === BROWSER_HASH.WATCHED) {
-    onWatchedVideoShow();
-    return;
-  }
-  onWatchingVideoShow();
+  const videos = watchingVideoModel.getItem();
+  const filteredVideos = getFilteredVideos(videos, renderCondition);
+  onWatchingVideoShow(filteredVideos);
 }
 
-function onWatchingVideoShow() {
-  const videos = watchingVideoModel.getItem();
-  watchedVideoView.eraseVideos();
-  watchedVideoView.hideEmptyVideoImage();
+function onWatchingVideoShow(videos) {
   if (videos.length === 0) {
     watchingVideoView.showEmptyVideoImage();
-    return;
   }
+  watchedVideoView.eraseVideos();
+  watchedVideoView.hideEmptyVideoImage();
   watchingVideoView.renderVideos(videos);
+  watchingVideoView.hideEmptyVideoImage();
 }
 
-function onWatchedVideoShow() {
-  watchingVideoView.eraseVideos();
-  watchingVideoView.hideEmptyVideoImage();
-
-  const videos = watchedVideoModel.getItem();
+function onWatchedVideoShow(videos) {
   if (videos.length === 0) {
     watchedVideoView.showEmptyVideoImage();
-    return;
   }
+  watchingVideoView.eraseVideos();
+  watchingVideoView.hideEmptyVideoImage();
   watchedVideoView.renderVideos(videos);
+  watchedVideoView.hideEmptyVideoImage();
 }
 
 export default controller;
+
+function getFilteredVideos(videos, condition) {
+  if (condition && condition === FILTER.LIKE) {
+    return videos.filter(video => video.isLiked === true);
+  }
+
+  return videos;
+}

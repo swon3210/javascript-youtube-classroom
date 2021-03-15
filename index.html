@@ -13,28 +13,41 @@
         <div class="w-100">
           <header class="my-4">
             <h2 class="text-center font-bold">👩🏻‍💻 나만의 유튜브 강의실 👨🏻‍💻</h2>
-            <nav id="nav" class="d-flex justify-center">
-              <a class="link" href="#watching">
-                <button
-                  id="watcing-video-switch-button"
-                  data-id="watching"
-                  class="js-nav__button btn mx-1"
-                >
-                  👁️ 볼 영상
+            <nav id="nav" class="d-flex justify-between">
+              <div class="switch-buttons">
+                <a class="link" href="#watching">
+                  <button
+                    id="watcing-video-switch-button"
+                    data-id="watching"
+                    class="js-nav__button btn mx-1 btn-hover"
+                  >
+                    👁️ 볼 영상
+                  </button>
+                </a>
+                <a class="link" href="#watched">
+                  <button
+                    id="watched-video-switch-button"
+                    data-id="watched"
+                    class="js-nav__button btn mx-1 btn-hover"
+                  >
+                    ✅ 본 영상
+                  </button>
+                </a>
+              </div>
+              <div>
+                <a class="link">
+                  <button
+                    id="like-video-switch-button"
+                    data-id="like"
+                    class="js-nav__button btn mx-1 btn-hover"
+                  >
+                    👍 좋아요만 보기
+                  </button>
+                </a>
+                <button id="search-button" class="btn mx-1 btn-hover">
+                  🔍 동영상 검색
                 </button>
-              </a>
-              <a class="link" href="#watched">
-                <button
-                  id="watched-video-switch-button"
-                  data-id="watched"
-                  class="js-nav__button btn mx-1"
-                >
-                  ✅ 본 영상
-                </button>
-              </a>
-              <button id="search-button" class="btn mx-1">
-                🔍 동영상 검색
-              </button>
+              </div>
             </nav>
           </header>
           <main class="mt-10">

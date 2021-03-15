@@ -17,6 +17,7 @@ function getNewVideo(dataset) {
     publishedAt: dataset.publishedAt,
     videoId: dataset.videoId,
     isSaved: true,
+    isLiked: false
   };
 }
 
