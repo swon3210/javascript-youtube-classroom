@@ -1,3 +1,4 @@
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
 const path = require('path');
@@ -15,6 +16,7 @@ module.exports = {
     new webpack.DefinePlugin({
       YOUTUBE_API_KEY: JSON.stringify(process.env.YOUTUBE_API_KEY_1),
     }),
+    new MiniCSSExtractPlugin()
   ],
   module: {
     rules: [
@@ -30,6 +32,14 @@ module.exports = {
             ],
           },
         },
+      },
+      {
+        test: /\.(css|scss|sass)$/,
+        use: [
+          MiniCSSExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
       },
     ],
   },

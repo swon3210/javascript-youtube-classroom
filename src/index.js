@@ -1,3 +1,5 @@
+import './assets/scss/index.scss'
+
 import controller from './controller/controller.js';
 import watchingVideoController from './controller/watchingVideoController.js';
 import watchedVideoController from './controller/watchedVideoController.js';

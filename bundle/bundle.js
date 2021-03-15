@@ -12939,76 +12939,6 @@ var $likeVideoSwitchButton = (0,_utils_querySelector_js__WEBPACK_IMPORTED_MODULE
 
 /***/ }),
 
-/***/ "./src/model/Filter.js":
-/*!*****************************!*\
-  !*** ./src/model/Filter.js ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Filter)
-/* harmony export */ });
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _classPrivateFieldGet(receiver, privateMap) { var descriptor = privateMap.get(receiver); if (!descriptor) { throw new TypeError("attempted to get private field on non-instance"); } if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
-
-function _classPrivateFieldSet(receiver, privateMap, value) { var descriptor = privateMap.get(receiver); if (!descriptor) { throw new TypeError("attempted to set private field on non-instance"); } if (descriptor.set) { descriptor.set.call(receiver, value); } else { if (!descriptor.writable) { throw new TypeError("attempted to set read only private field"); } descriptor.value = value; } return value; }
-
-var _selectedCondition = new WeakMap();
-
-var _conditionList = new WeakMap();
-
-var Filter = /*#__PURE__*/function () {
-  function Filter() {
-    var initialCondition = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'default';
-    var conditionList = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-
-    _classCallCheck(this, Filter);
-
-    _selectedCondition.set(this, {
-      writable: true,
-      value: void 0
-    });
-
-    _conditionList.set(this, {
-      writable: true,
-      value: void 0
-    });
-
-    _classPrivateFieldSet(this, _selectedCondition, initialCondition);
-
-    _classPrivateFieldSet(this, _conditionList, conditionList);
-  }
-
-  _createClass(Filter, [{
-    key: "switchCondition",
-    value: function switchCondition(condition) {
-      if (!_classPrivateFieldGet(this, _conditionList).includes(condition)) {
-        return;
-      }
-
-      _classPrivateFieldSet(this, _selectedCondition, condition);
-    }
-  }, {
-    key: "selectedCondition",
-    get: function get() {
-      return _classPrivateFieldGet(this, _selectedCondition);
-    }
-  }]);
-
-  return Filter;
-}();
-
-
-
-/***/ }),
-
 /***/ "./src/service/modalService.js":
 /*!*************************************!*\
   !*** ./src/service/modalService.js ***!
@@ -13512,8 +13442,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants.js */ "./src/constants.js");
 /* harmony import */ var _storageModel_PrevSearchResult_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./storageModel/PrevSearchResult.js */ "./src/storageModel/PrevSearchResult.js");
 /* harmony import */ var _storageModel_ArrayStorage_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./storageModel/ArrayStorage.js */ "./src/storageModel/ArrayStorage.js");
-/* harmony import */ var _model_Filter_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./model/Filter.js */ "./src/model/Filter.js");
-
 
 
 
@@ -14117,6 +14045,19 @@ var modalView = new _ModalView__WEBPACK_IMPORTED_MODULE_2__.default({
   $searchedVideoNotFound: _elements__WEBPACK_IMPORTED_MODULE_0__.$searchedVideoNotFound
 });
 
+/***/ }),
+
+/***/ "./src/assets/scss/index.scss":
+/*!************************************!*\
+  !*** ./src/assets/scss/index.scss ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
 /***/ })
 
 /******/ 	});
@@ -14242,22 +14183,24 @@ define(String.prototype, "padRight", "".padEnd);
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _controller_controller_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./controller/controller.js */ "./src/controller/controller.js");
-/* harmony import */ var _controller_watchingVideoController_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./controller/watchingVideoController.js */ "./src/controller/watchingVideoController.js");
-/* harmony import */ var _controller_watchedVideoController_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./controller/watchedVideoController.js */ "./src/controller/watchedVideoController.js");
-/* harmony import */ var _controller_modalController_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./controller/modalController.js */ "./src/controller/modalController.js");
-/* harmony import */ var _controller_filterController_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controller/filterController.js */ "./src/controller/filterController.js");
+/* harmony import */ var _assets_scss_index_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/scss/index.scss */ "./src/assets/scss/index.scss");
+/* harmony import */ var _controller_controller_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./controller/controller.js */ "./src/controller/controller.js");
+/* harmony import */ var _controller_watchingVideoController_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./controller/watchingVideoController.js */ "./src/controller/watchingVideoController.js");
+/* harmony import */ var _controller_watchedVideoController_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./controller/watchedVideoController.js */ "./src/controller/watchedVideoController.js");
+/* harmony import */ var _controller_modalController_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controller/modalController.js */ "./src/controller/modalController.js");
+/* harmony import */ var _controller_filterController_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./controller/filterController.js */ "./src/controller/filterController.js");
 
 
 
 
 
-_controller_controller_js__WEBPACK_IMPORTED_MODULE_0__.default.initRouteEventListeners();
-_controller_modalController_js__WEBPACK_IMPORTED_MODULE_3__.default.initEventListeners();
-_controller_modalController_js__WEBPACK_IMPORTED_MODULE_3__.default.initSearchQueries();
-_controller_watchingVideoController_js__WEBPACK_IMPORTED_MODULE_1__.default.initEventListeners();
-_controller_watchedVideoController_js__WEBPACK_IMPORTED_MODULE_2__.default.initEventListeners();
-_controller_filterController_js__WEBPACK_IMPORTED_MODULE_4__.default.initEventListeners();
+
+_controller_controller_js__WEBPACK_IMPORTED_MODULE_1__.default.initRouteEventListeners();
+_controller_modalController_js__WEBPACK_IMPORTED_MODULE_4__.default.initEventListeners();
+_controller_modalController_js__WEBPACK_IMPORTED_MODULE_4__.default.initSearchQueries();
+_controller_watchingVideoController_js__WEBPACK_IMPORTED_MODULE_2__.default.initEventListeners();
+_controller_watchedVideoController_js__WEBPACK_IMPORTED_MODULE_3__.default.initEventListeners();
+_controller_filterController_js__WEBPACK_IMPORTED_MODULE_5__.default.initEventListeners();
 })();
 
 /******/ })()

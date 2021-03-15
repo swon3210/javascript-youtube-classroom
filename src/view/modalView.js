@@ -113,6 +113,7 @@ export default class ModalView extends BasicView {
     return videos.map(this.#getSearchedVideoTemplate).join('');
   }
 
+  // TODO : 프리뷰 이미지 여기도 추가하기
   #getSearchedVideoTemplate(videoItem) {
     return `
     <article class="${SELECTOR_CLASS.SEARCHED_CLIP} clip">

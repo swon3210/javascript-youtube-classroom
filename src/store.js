@@ -1,8 +1,7 @@
 import VideoStorage from './storageModel/VideoStorage.js';
-import { LOCAL_STORAGE_KEY, FILTER } from './constants.js';
+import { LOCAL_STORAGE_KEY } from './constants.js';
 import PrevSearchResult from './storageModel/PrevSearchResult.js';
 import ArrayStorage from './storageModel/ArrayStorage.js';
-import Filter from './model/Filter.js';
 
 export const watchingVideoModel = new VideoStorage(
   LOCAL_STORAGE_KEY.WATCHING_VIDEOS
