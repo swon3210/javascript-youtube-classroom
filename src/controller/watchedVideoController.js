@@ -59,12 +59,14 @@ function onWatchedVideoLike(videoId) {
 }
 
 function loadWatchedVideos() {
-  const watchedVideos = watchedVideoModel.getItem();
+  const [ _, renderCondition ] = controllerUtil.parseHash(location.hash).split('#');
+  const videos = watchedVideoModel.getItem();
+  const filteredVideos = controllerUtil.getFilteredVideos(videos, renderCondition);
   if (watchedVideoService.isVideosEmpty()) {
     watchedVideoView.showEmptyVideoImage();
     watchingVideoView.hideEmptyVideoImage();
   }
-  watchedVideoView.renderVideos(watchedVideos);
+  watchedVideoView.renderVideos(filteredVideos);
 }
 
 function displayMoreWatchedVideos() {

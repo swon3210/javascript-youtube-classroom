@@ -12379,14 +12379,14 @@ function routeByHash() {
   if (videoType === _constants_js__WEBPACK_IMPORTED_MODULE_0__.BROWSER_HASH.WATCHED) {
     var _videos = _store_js__WEBPACK_IMPORTED_MODULE_1__.watchedVideoModel.getItem();
 
-    var _filteredVideos = getFilteredVideos(_videos, renderCondition);
+    var _filteredVideos = _controllerUtil_js__WEBPACK_IMPORTED_MODULE_2__.default.getFilteredVideos(_videos, renderCondition);
 
     onWatchedVideoShow(_filteredVideos);
     return;
   }
 
   var videos = _store_js__WEBPACK_IMPORTED_MODULE_1__.watchingVideoModel.getItem();
-  var filteredVideos = getFilteredVideos(videos, renderCondition);
+  var filteredVideos = _controllerUtil_js__WEBPACK_IMPORTED_MODULE_2__.default.getFilteredVideos(videos, renderCondition);
   onWatchingVideoShow(filteredVideos);
 }
 
@@ -12398,9 +12398,9 @@ function onWatchingVideoShow(videos) {
   _view_index_js__WEBPACK_IMPORTED_MODULE_3__.watchedVideoView.eraseVideos();
   _view_index_js__WEBPACK_IMPORTED_MODULE_3__.watchedVideoView.hideEmptyVideoImage();
   _view_index_js__WEBPACK_IMPORTED_MODULE_3__.watchedVideoView.hideVideoWrapperIntersector();
+  _view_index_js__WEBPACK_IMPORTED_MODULE_3__.watchingVideoView.showVideoWrapperIntersector();
   _view_index_js__WEBPACK_IMPORTED_MODULE_3__.watchingVideoView.renderVideos(videos);
   _view_index_js__WEBPACK_IMPORTED_MODULE_3__.watchingVideoView.hideEmptyVideoImage();
-  _view_index_js__WEBPACK_IMPORTED_MODULE_3__.watchingVideoView.showVideoWrapperIntersector();
 }
 
 function onWatchedVideoShow(videos) {
@@ -12411,22 +12411,12 @@ function onWatchedVideoShow(videos) {
   _view_index_js__WEBPACK_IMPORTED_MODULE_3__.watchingVideoView.eraseVideos();
   _view_index_js__WEBPACK_IMPORTED_MODULE_3__.watchingVideoView.hideEmptyVideoImage();
   _view_index_js__WEBPACK_IMPORTED_MODULE_3__.watchingVideoView.hideVideoWrapperIntersector();
+  _view_index_js__WEBPACK_IMPORTED_MODULE_3__.watchedVideoView.showVideoWrapperIntersector();
   _view_index_js__WEBPACK_IMPORTED_MODULE_3__.watchedVideoView.renderVideos(videos);
   _view_index_js__WEBPACK_IMPORTED_MODULE_3__.watchedVideoView.hideEmptyVideoImage();
-  _view_index_js__WEBPACK_IMPORTED_MODULE_3__.watchedVideoView.showVideoWrapperIntersector();
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (controller);
-
-function getFilteredVideos(videos, condition) {
-  if (condition && condition === _constants_js__WEBPACK_IMPORTED_MODULE_0__.FILTER.LIKE) {
-    return videos.filter(function (video) {
-      return video.isLiked === true;
-    });
-  }
-
-  return videos;
-}
 
 /***/ }),
 
@@ -12460,6 +12450,15 @@ var controllerUtil = {
     }
 
     return hash.substr(1);
+  },
+  getFilteredVideos: function getFilteredVideos(videos, condition) {
+    if (condition && condition === FILTER.LIKE) {
+      return videos.filter(function (video) {
+        return video.isLiked === true;
+      });
+    }
+
+    return videos;
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (controllerUtil);
@@ -12536,6 +12535,18 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -12570,10 +12581,26 @@ function onModalOpen() {
 
   _view_index_js__WEBPACK_IMPORTED_MODULE_5__.modalView.renderSearchedVideos(processedVideos);
   _view_index_js__WEBPACK_IMPORTED_MODULE_5__.modalView.showSearchResultIntersector();
+  _view_index_js__WEBPACK_IMPORTED_MODULE_5__.watchingVideoView.hideVideoWrapperIntersector();
+  _view_index_js__WEBPACK_IMPORTED_MODULE_5__.watchedVideoView.hideVideoWrapperIntersector();
 }
 
 function onModalClose() {
+  var _controllerUtil$parse = _controllerUtil_js__WEBPACK_IMPORTED_MODULE_2__.default.parseHash(location.hash).split('#'),
+      _controllerUtil$parse2 = _slicedToArray(_controllerUtil$parse, 1),
+      videoType = _controllerUtil$parse2[0];
+
   _view_index_js__WEBPACK_IMPORTED_MODULE_5__.modalView.closeModal();
+
+  if (videoType === _constants_js__WEBPACK_IMPORTED_MODULE_6__.BROWSER_HASH.WATCHING) {
+    _view_index_js__WEBPACK_IMPORTED_MODULE_5__.watchingVideoView.showVideoWrapperIntersector();
+    return;
+  }
+
+  if (videoType === _constants_js__WEBPACK_IMPORTED_MODULE_6__.BROWSER_HASH.WATCHED) {
+    _view_index_js__WEBPACK_IMPORTED_MODULE_5__.watchedVideoView.showVideoWrapperIntersector();
+    return;
+  }
 }
 
 function onVideoSearch(_x) {
@@ -12738,6 +12765,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../view */ "./src/view/index.js");
 /* harmony import */ var _utils_querySelector_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/querySelector.js */ "./src/utils/querySelector.js");
 /* harmony import */ var _controllerUtil_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./controllerUtil.js */ "./src/controller/controllerUtil.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -12798,14 +12837,20 @@ function onWatchedVideoLike(videoId) {
 }
 
 function loadWatchedVideos() {
-  var watchedVideos = _store__WEBPACK_IMPORTED_MODULE_3__.watchedVideoModel.getItem();
+  var _controllerUtil$parse = _controllerUtil_js__WEBPACK_IMPORTED_MODULE_6__.default.parseHash(location.hash).split('#'),
+      _controllerUtil$parse2 = _slicedToArray(_controllerUtil$parse, 2),
+      _ = _controllerUtil$parse2[0],
+      renderCondition = _controllerUtil$parse2[1];
+
+  var videos = _store__WEBPACK_IMPORTED_MODULE_3__.watchedVideoModel.getItem();
+  var filteredVideos = _controllerUtil_js__WEBPACK_IMPORTED_MODULE_6__.default.getFilteredVideos(videos, renderCondition);
 
   if (_service_watchedVideoService_js__WEBPACK_IMPORTED_MODULE_2__.default.isVideosEmpty()) {
     _view__WEBPACK_IMPORTED_MODULE_4__.watchedVideoView.showEmptyVideoImage();
     _view__WEBPACK_IMPORTED_MODULE_4__.watchingVideoView.hideEmptyVideoImage();
   }
 
-  _view__WEBPACK_IMPORTED_MODULE_4__.watchedVideoView.renderVideos(watchedVideos);
+  _view__WEBPACK_IMPORTED_MODULE_4__.watchedVideoView.renderVideos(filteredVideos);
 }
 
 function displayMoreWatchedVideos() {
@@ -12843,6 +12888,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _service_watchingVideoService_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../service/watchingVideoService.js */ "./src/service/watchingVideoService.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../constants */ "./src/constants.js");
 /* harmony import */ var _controllerUtil__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./controllerUtil */ "./src/controller/controllerUtil.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -12906,14 +12963,20 @@ function onWatchingVideoLike(videoId) {
 }
 
 function loadWatchingVideos() {
-  var watchingVideos = _store__WEBPACK_IMPORTED_MODULE_2__.watchingVideoModel.getItem();
+  var _controllerUtil$parse = _controllerUtil__WEBPACK_IMPORTED_MODULE_6__.default.parseHash(location.hash).split('#'),
+      _controllerUtil$parse2 = _slicedToArray(_controllerUtil$parse, 2),
+      _ = _controllerUtil$parse2[0],
+      renderCondition = _controllerUtil$parse2[1];
+
+  var videos = _store__WEBPACK_IMPORTED_MODULE_2__.watchingVideoModel.getItem();
+  var filteredVideos = _controllerUtil__WEBPACK_IMPORTED_MODULE_6__.default.getFilteredVideos(videos, renderCondition);
 
   if (_service_watchingVideoService_js__WEBPACK_IMPORTED_MODULE_4__.default.isVideosEmpty()) {
     _view__WEBPACK_IMPORTED_MODULE_3__.watchingVideoView.showEmptyVideoImage();
     _view__WEBPACK_IMPORTED_MODULE_3__.watchedVideoView.hideEmptyVideoImage();
   }
 
-  _view__WEBPACK_IMPORTED_MODULE_3__.watchingVideoView.renderVideos(watchingVideos);
+  _view__WEBPACK_IMPORTED_MODULE_3__.watchingVideoView.renderVideos(filteredVideos);
 }
 
 function displayMoreWatchingVideos() {

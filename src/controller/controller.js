@@ -22,12 +22,12 @@ function routeByHash() {
   layoutView.highlightNavButton(videoType);  
   if (videoType === BROWSER_HASH.WATCHED) {
     const videos = watchedVideoModel.getItem();
-    const filteredVideos = getFilteredVideos(videos, renderCondition)
+    const filteredVideos = controllerUtil.getFilteredVideos(videos, renderCondition)
     onWatchedVideoShow(filteredVideos);
     return;
   }
   const videos = watchingVideoModel.getItem();
-  const filteredVideos = getFilteredVideos(videos, renderCondition);
+  const filteredVideos = controllerUtil.getFilteredVideos(videos, renderCondition);
   onWatchingVideoShow(filteredVideos);
 }
 
@@ -38,9 +38,9 @@ function onWatchingVideoShow(videos) {
   watchedVideoView.eraseVideos();
   watchedVideoView.hideEmptyVideoImage();
   watchedVideoView.hideVideoWrapperIntersector();
+  watchingVideoView.showVideoWrapperIntersector();
   watchingVideoView.renderVideos(videos);
   watchingVideoView.hideEmptyVideoImage();
-  watchingVideoView.showVideoWrapperIntersector();
 }
 
 function onWatchedVideoShow(videos) {
@@ -50,17 +50,10 @@ function onWatchedVideoShow(videos) {
   watchingVideoView.eraseVideos();
   watchingVideoView.hideEmptyVideoImage();
   watchingVideoView.hideVideoWrapperIntersector();
+  watchedVideoView.showVideoWrapperIntersector();
   watchedVideoView.renderVideos(videos);
   watchedVideoView.hideEmptyVideoImage();
-  watchedVideoView.showVideoWrapperIntersector();
 }
 
 export default controller;
 
-function getFilteredVideos(videos, condition) {
-  if (condition && condition === FILTER.LIKE) {
-    return videos.filter(video => video.isLiked === true);
-  }
-
-  return videos;
-}

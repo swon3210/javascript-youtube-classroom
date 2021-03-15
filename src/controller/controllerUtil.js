@@ -17,6 +17,13 @@ const controllerUtil = {
     }
     return hash.substr(1);
   },
+  getFilteredVideos(videos, condition) {
+    if (condition && condition === FILTER.LIKE) {
+      return videos.filter(video => video.isLiked === true);
+    }
+  
+    return videos;
+  }
 };
 
 export default controllerUtil;

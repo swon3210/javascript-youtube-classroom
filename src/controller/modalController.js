@@ -48,10 +48,21 @@ function onModalOpen() {
   }
   modalView.renderSearchedVideos(processedVideos);
   modalView.showSearchResultIntersector();
+  watchingVideoView.hideVideoWrapperIntersector();
+  watchedVideoView.hideVideoWrapperIntersector();
 }
 
 function onModalClose() {
+  const [ videoType ] = controllerUtil.parseHash(location.hash).split('#');
   modalView.closeModal();
+  if (videoType === BROWSER_HASH.WATCHING) {
+    watchingVideoView.showVideoWrapperIntersector();
+    return;
+  }
+  if (videoType === BROWSER_HASH.WATCHED) {
+    watchedVideoView.showVideoWrapperIntersector();
+    return;
+  }
 }
 
 async function onVideoSearch(event) {
